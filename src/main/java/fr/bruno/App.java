@@ -64,14 +64,21 @@ public class App {
 			}
 
 			double moyenneTest1 = computeMoyenne(test1);
-
-			if (moyenneTest1 > moyenne) {
-				test1.add(numerosTrieTmp.getFirst());
-				numerosTrieTmp.removeFirst();
-			} else {
-				test1.add(numerosTrieTmp.getLast());
-				numerosTrieTmp.removeLast();
+			int percent = (int) (numerosTrieTmp.size() * 0.1);
+			int random = 0;
+			if (percent > 0) {
+				random = (new Random()).nextInt(percent);
 			}
+
+			Integer choose = null;
+			if (moyenneTest1 > moyenne) {
+				choose = numerosTrieTmp.get(random);
+			} else {
+				choose = numerosTrieTmp.get(numerosTrieTmp.size() - 1 - random);
+			}
+
+			test1.add(choose);
+			numerosTrieTmp.remove(choose);
 
 		}
 
